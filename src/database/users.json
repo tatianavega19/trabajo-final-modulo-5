@@ -1,0 +1,17 @@
+{
+    "users": [
+        {
+            "username": "Ailen Paez",
+            "password": "Ailu1234",
+            "email": "ailu1@gmail.com",
+            "phoneNumber": "3489635789",
+            "token": ""
+        },
+        {
+            "username": "Carolina Sordini",
+            "password": "Caro4321",
+            "email": "Caro2@gmail.com",
+            "token": ""
+        }
+    ]
+}

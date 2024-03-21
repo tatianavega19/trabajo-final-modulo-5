@@ -1,2 +1,5 @@
 ### Mostrar la informacion de la api
 GET http://localhost:1904/api 
+
+### Mostrar todos los usuarios
+GET http://localhost:1904/api/users
