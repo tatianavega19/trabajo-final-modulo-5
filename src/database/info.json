@@ -1,0 +1,13 @@
+{
+    "version": "1.0.0",
+    "author": "TatianaAylenVega",
+    "country": "Argentina",
+    "description": "The Aerial Trapeze API offers an interactive platform for enthusiasts and practitioners of this circus discipline. Access a wide range of figures, step-by-step instructions, warm-up exercises and discipline data.",
+    "paths": [
+        "Figures",
+        "Aerial Trapeze",
+        "Heating",
+        "History",
+        "Figure guide"
+    ]
+}
