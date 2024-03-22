@@ -2,15 +2,37 @@
     "users": [
         {
             "username": "Ailen Paez",
-            "password": "Ailu1234",
+            "password": "27ea88cf57ab7081f4e88d5645648a298bcc928cc72e3c2de1ad35624d73c844",
             "email": "ailu1@gmail.com",
-            "phoneNumber": "3489635789",
+            "phoneNumber": 3489635789,
             "token": ""
         },
         {
             "username": "Carolina Sordini",
-            "password": "Caro4321",
-            "email": "Caro2@gmail.com",
+            "password": "b30223b52cb58614b7b2eccf4096040f1ac7ac5d913231f01c6ef1c9f486ebfa",
+            "email": "caro2@gmail.com",
+            "phoneNumber": 3489591562,
+            "token": ""
+        },
+        {
+            "username": "Gabriel Alberini",
+            "password": "fe3f2e4159712ec4974197ef5fab36d1d00080b8e3dd4159d527ae48e39721b2",
+            "email": "gabo3@gmail.com",
+            "phoneNumber": 3489596618,
+            "token": ""
+        },
+        {
+            "username": "Tatiana Vega",
+            "password": "7302dcd79f6f93ae709a30469981b12704b067e7964da86b26c1172f32f6ec82",
+            "email": "tatiana4@gmail.com",
+            "phoneNumber": 3489634837,
+            "token": ""
+        },
+        {
+            "username": "Gabriela Torres",
+            "password": "2589c396efff6ac3bc1eabcf08534e82e171adde72d56386cfac930f21292522",
+            "email": "gaby5@gmail.com",
+            "phoneNumber": 3489444910,
             "token": ""
         }
     ]
