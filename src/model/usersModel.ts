@@ -1,10 +1,12 @@
 import jsonfile from "jsonfile";
 import crypto from "node:crypto";
+import { randomUUID } from "node:crypto"
 
 class UserModel {
     static getAllUsers() {
         const usersData = jsonfile.readFileSync("./src/database/users.json");
         return usersData.users.map((user: any) => ({
+            id: user.id,
             username: user.username,
             email: user.email,
         }));
@@ -22,7 +24,9 @@ class UserModel {
 
             const hashedPassword = crypto.createHash("sha256").update(password).digest("hex")
 
-            const newUser = { username, password: hashedPassword, email, phoneNumber, token: "" }
+            const id = crypto.randomUUID();
+
+            const newUser = { id, username, password: hashedPassword, email, phoneNumber, token: "" }
 
             usersData.users.push(newUser)
 

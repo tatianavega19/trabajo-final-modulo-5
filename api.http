@@ -9,8 +9,8 @@ POST http://localhost:1904/api/users/register
 Content-Type: application/json
 
 {
-    "username": "Gabriela Torres",
-    "password": "gaby1973",
-    "email": "gaby5@gmail.com",
-    "phoneNumber": 3489444910
+  "username": "Tatiana Vega",
+  "password": "1909",
+  "email": "taty4@gmail.com",
+  "phoneNumber": 3489489237
 }
