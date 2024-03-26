@@ -6,13 +6,13 @@ import { dirname } from "../database/dirname"
 
 class UserModel {
 
-    private static findUser(username: string) {
+    static findUser(username: string) {
         return users.users.find(
             (user) => user.username.toLowerCase() === username.toLowerCase()
         );
     };
 
-    static async writeDbUser() {
+    static writeDbUser() {
         return writeFile(dirname + "/users.json", users);
     };
 
@@ -73,6 +73,18 @@ class UserModel {
 
         return token;
     };
+
+    static readUserById(userId: string) {
+        const user = users.users.find((user: any) => user.id === userId);
+
+        if (!user) {
+            return { error: "User not found!" };
+        }
+
+        const { id, username, email } = user;
+
+        return { id, username, email };
+    }
 };
 
 export { UserModel }

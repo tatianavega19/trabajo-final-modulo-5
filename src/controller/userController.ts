@@ -3,7 +3,7 @@ import { UserModel } from "../model/usersModel";
 import { validateUserRegistration, validatePartialUser } from "../validation/validationSchema"
 
 abstract class UserController {
-    
+
     static getAllUsers = (req: Request, res: Response) => {
         const users = UserModel.getAllUsers();
         res.json(users);
@@ -36,7 +36,7 @@ abstract class UserController {
         };
     };
 
-    static loginUser = async (req: Request, res: Response) => {
+    static loginUser = (req: Request, res: Response) => {
         const validate = validatePartialUser(req.body);
 
         if (!validate.success)
@@ -44,7 +44,7 @@ abstract class UserController {
                 .status(400)
                 .json({ error: "Ursename or  password incorrect" });
 
-        const userLogged = await UserModel.loginUser(req.body);
+        const userLogged = UserModel.loginUser(req.body);
 
         if (userLogged === 400)
             return res.status(400).json({ error: "Bad request" });
@@ -58,6 +58,22 @@ abstract class UserController {
             .end();
     };
 
+    static readUserById = (req: Request, res: Response) => {
+        const userId = req.params.id;
+
+        try {
+            const user = UserModel.readUserById(userId);
+
+            if ("error" in user) {
+                return res.status(404).json(user);
+            } else {
+                return res.json(user);
+            }
+        } catch (error) {
+            console.error("Error reading user by ID");
+            return res.status(500).json({ error: "Server error" });
+        }
+    }
 };
 
 export { UserController }
