@@ -9,8 +9,17 @@ POST http://localhost:1904/api/users/register
 Content-Type: application/json
 
 {
-  "username": "Tatiana Vega",
-  "password": "1909",
-  "email": "taty4@gmail.com",
+  "username": "Pepito Lopez",
+  "password": "1010",
+  "email": "pepito5@gmail.com",
   "phoneNumber": 3489489237
+}
+
+### Acceso de usuario
+POST http://localhost:1904/api/users/login
+Content-Type: application/json
+
+{
+  "username": "Pepito Lopez",
+  "password": "1010"
 }

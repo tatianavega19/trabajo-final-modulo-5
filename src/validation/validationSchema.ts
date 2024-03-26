@@ -12,4 +12,8 @@ const validateUserRegistration = (userData: any) => {
     return validationResult;
 };
 
-export { validateUserRegistration }
+const validateUser = (obj: any) => registrationSchema.safeParse(obj);
+
+const validatePartialUser = (obj: any) => registrationSchema.partial().safeParse(obj);
+
+export { validateUser, validatePartialUser, validateUserRegistration };

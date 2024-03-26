@@ -1,8 +1,21 @@
 import jsonfile from "jsonfile";
 import crypto from "node:crypto";
-import { randomUUID } from "node:crypto"
+import users from "../database/users.json"
+import { writeFile } from "jsonfile"
+import { dirname } from "../database/dirname"
 
 class UserModel {
+
+    private static findUser(username: string) {
+        return users.users.find(
+            (user) => user.username.toLowerCase() === username.toLowerCase()
+        );
+    };
+
+    static async writeDbUser() {
+        return writeFile(dirname + "/users.json", users);
+    };
+
     static getAllUsers() {
         const usersData = jsonfile.readFileSync("./src/database/users.json");
         return usersData.users.map((user: any) => ({
@@ -20,7 +33,7 @@ class UserModel {
             const existingUser = usersData.users.find((user: any) => user.username === username || user.email === email);
             if (existingUser) {
                 return 409;
-            }
+            };
 
             const hashedPassword = crypto.createHash("sha256").update(password).digest("hex")
 
@@ -37,6 +50,28 @@ class UserModel {
             console.error("Error registering user:", error)
             return 500;
         };
+    };
+
+    static loginUser(userData: any) {
+        const { username, password } = userData;
+
+        const userFound = this.findUser(username);
+
+        if (!userFound) return 404;
+
+        const hashPassword = crypto
+            .createHash("sha256")
+            .update(password)
+            .digest("hex");
+
+        if (userFound.password !== hashPassword) return 400;
+
+        const token = crypto.randomUUID();
+
+        userFound.token = token;
+        this.writeDbUser();
+
+        return token;
     };
 };
 
