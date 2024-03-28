@@ -99,7 +99,7 @@ class UserModel {
     };
 
     static updateUser = (userData: any) => {
-        const { mail, username, password, interests, usernameParam } = userData;
+        const { mail, username, password, usernameParam } = userData;
 
         const userFound = this.findUser(usernameParam);
 
