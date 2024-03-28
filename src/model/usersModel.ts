@@ -89,13 +89,31 @@ class UserModel {
     static logout = (username: any) => {
         const user = users.users.find((u) => u.username === username);
 
-        if(!user) return 404;
+        if (!user) return 404;
 
         user.token = ""
 
         writeFile("./src/database/users.json", users);
 
         return { message: "Log out User" }
+    };
+
+    static updateUser = (userData: any) => {
+        const { mail, username, password, interests, usernameParam } = userData;
+
+        const userFound = this.findUser(usernameParam);
+
+        if (!userFound) return { error: "User not found" };
+
+        if (mail) userFound.email = mail;
+        if (username) userFound.username = username;
+        if (password) userFound.password = password;
+
+        this.writeDbUser();
+        return {
+            message: "user update",
+            user: { email: userFound.email, username: userFound.username },
+        };
     };
 };
 

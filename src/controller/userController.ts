@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { UserModel } from "../model/usersModel";
+import crypto from "node:crypto";
 import { validateUserRegistration, validatePartialUser } from "../validation/validationSchema"
 
 abstract class UserController {
@@ -81,9 +82,31 @@ abstract class UserController {
         if (response === 404)
             return res.status(404).json(response),
 
-    res.json(response)
+                res.json(response)
     };
 
+    static updateUser = (req: Request, res: Response) => {
+        const validate = validatePartialUser(req.body);
+
+        if (!validate.success)
+            return res.status(400).json({ error: validate.error });
+
+        const usernameParam = req.params.username;
+
+        if (req.body.password)
+            req.body.password = crypto
+                .createHash("sha256")
+                .update(req.body.password)
+                .digest("hex");
+
+        const userData = { usernameParam, ...req.body };
+
+        const response = UserModel.updateUser(userData);
+
+        if (response.error) return res.status(400).json(response);
+
+        res.status(201).json(response);
+    };
 };
 
 export { UserController }
