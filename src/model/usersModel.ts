@@ -84,7 +84,19 @@ class UserModel {
         const { id, username, email } = user;
 
         return { id, username, email };
-    }
+    };
+
+    static logout = (username: any) => {
+        const user = users.users.find((u) => u.username === username);
+
+        if(!user) return 404;
+
+        user.token = ""
+
+        writeFile("./src/database/users.json", users);
+
+        return { message: "Log out User" }
+    };
 };
 
 export { UserModel }

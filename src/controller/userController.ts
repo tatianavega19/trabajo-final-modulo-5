@@ -72,8 +72,18 @@ abstract class UserController {
         } catch (error) {
             console.error("Error reading user by ID");
             return res.status(500).json({ error: "Server error" });
-        }
-    }
+        };
+    };
+    static logout = (req: Request, res: Response) => {
+        const { username } = req.body;
+        const response = UserModel.logout(username);
+
+        if (response === 404)
+            return res.status(404).json(response),
+
+    res.json(response)
+    };
+
 };
 
 export { UserController }
