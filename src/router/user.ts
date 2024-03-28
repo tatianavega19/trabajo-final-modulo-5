@@ -5,7 +5,7 @@ import {validatorAuth} from "../middleware/validator"
 const userRouter = Router();
 
 userRouter.get("/", validatorAuth,UserController.getAllUsers);
-userRouter.get("/:id", UserController.readUserById)
+userRouter.get("/:id",validatorAuth, UserController.readUserById)
 userRouter.post("/register", UserController.registerUser);
 userRouter.post("/login", UserController.loginUser)
 userRouter.patch("/:username", validatorAuth, UserController.updateUser);

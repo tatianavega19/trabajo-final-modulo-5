@@ -99,15 +99,16 @@ class UserModel {
     };
 
     static updateUser = (userData: any) => {
-        const { mail, username, password, usernameParam } = userData;
+        const { email, username, password, phoneNumber,usernameParam } = userData;
 
         const userFound = this.findUser(usernameParam);
 
         if (!userFound) return { error: "User not found" };
 
-        if (mail) userFound.email = mail;
+        if (email) userFound.email = email;
         if (username) userFound.username = username;
         if (password) userFound.password = password;
+        if(phoneNumber) userFound.phoneNumber = phoneNumber
 
         this.writeDbUser();
         return {
