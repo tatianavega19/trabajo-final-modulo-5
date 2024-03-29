@@ -80,13 +80,24 @@ abstract class TrapezeController {
 
     static getImageById = (req: Request, res: Response) => {
         const { id } = req.params;
-    const imageUrl = TrapezeModel.getUrlImage(id);
+        const imageUrl = TrapezeModel.getUrlImage(id);
 
-    if (typeof imageUrl === "string") {
-        res.status(200).json({ imageUrl });
-    } else {
-        res.status(404).json({ error: imageUrl });
+        if (typeof imageUrl === "string") {
+            res.status(200).json({ imageUrl });
+        } else {
+            res.status(404).json({ error: imageUrl });
+        }
     }
+
+    static getStepsByName = (req: Request, res: Response) => {
+        const { name } = req.params;
+        const steps = TrapezeModel.getStepsByName(name);
+
+        if (steps) {
+            res.status(200).json(steps)
+        } else {
+            res.status(404).json({ error: `Steps not found for figure with name '${name}'` });
+        }
     }
 }
 

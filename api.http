@@ -61,3 +61,6 @@ DELETE http://localhost:1904/api/trapeze/b6fff6c2-fe34-4080-968a-34e46764644f
 
 ### buscar por id una image 
 GET http://localhost:1904/api/trapeze/image/1
+
+### Buscar los paso a seguir por nombre
+GET http://localhost:1904/api/trapeze/steps/Candelabro invertido

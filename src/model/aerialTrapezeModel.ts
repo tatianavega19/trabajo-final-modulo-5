@@ -3,6 +3,10 @@ import crypto from "node:crypto";
 
 class TrapezeModel {
 
+    static readDatabase() {
+        return jsonfile.readFileSync("./src/database/trapeze.json");
+    }
+
     static getAllFigures() {
         const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
         return trapecioData.Trapecio.map((figure: any) => ({
@@ -73,7 +77,7 @@ class TrapezeModel {
         return { message: "Figure updated successfully", updatedFigure: figureToUpdate };
     }
 
-    static deleteFigure (figureId: string)  {
+    static deleteFigure(figureId: string) {
         try {
             const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
 
@@ -94,26 +98,45 @@ class TrapezeModel {
         }
     };
 
-    static getUrlImage (id: string) {
+    static getUrlImage(id: string) {
         try {
             const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
             const figure = trapecioData.Trapecio.find((figure: any) => figure.Id === id);
-    
+
             if (!figure) {
                 throw new Error(`Figure with ID ${id} not found`);
             }
-    
+
             const { name, images } = figure;
             const imageUrl = images.jpg.image_url;
-    
+
             if (!imageUrl) {
                 throw new Error(`Image URL not found for the figure with ID ${id}`);
             }
-    
+
             return { name, imageUrl };
         } catch (error) {
             return error instanceof Error ? error.message : "Error fetching image info";
         }
+    }
+
+    static getStepsByName(name: string) {
+        const trapecioData = this.readDatabase();
+        const figure = trapecioData.Trapecio.find((figure: any) => figure.name === name);
+
+        if (!figure) {
+            throw new Error(`Figure with name '${name}' not found`);
+        }
+
+        const { steps, images } = figure;
+        const imageUrl = images?.jpg?.image_url;
+
+        if (!steps || !imageUrl) {
+            throw new Error(`Steps not found for figure with name '${name}'`);
+        }
+
+        return { name, steps, imageUrl };
+
     }
 }
 
