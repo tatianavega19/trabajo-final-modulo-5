@@ -55,3 +55,6 @@ Content-Type: application/json
     }
   }
 }
+
+### eliminar
+DELETE http://localhost:1904/api/trapeze/b6fff6c2-fe34-4080-968a-34e46764644f

@@ -65,6 +65,17 @@ abstract class TrapezeController {
             return res.status(400).json(response);
 
         res.status(200).json(response);
+    };
+
+    static deleteFigure = (req: Request, res: Response) => {
+        const { id } = req.params;
+        const response = TrapezeModel.deleteFigure(id);
+
+        if (!response.message) {
+            return res.status(400).json({ error: "Error to delete user" });
+        }
+
+        return res.json(response);
     }
 }
 

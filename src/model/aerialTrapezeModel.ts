@@ -54,25 +54,45 @@ class TrapezeModel {
     static updateFigure(figureData: any) {
         const { name, description, steps, difficulty, images, figureId } = figureData;
 
+        const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
+
+        const figureToUpdate = trapecioData.Trapecio.find((figure: any) => figure.Id === figureId);
+
+        if (!figureToUpdate) {
+            return { error: "Figure not found!" };
+        }
+
+        if (name) figureToUpdate.name = name;
+        if (description) figureToUpdate.description = description;
+        if (steps) figureToUpdate.steps = steps;
+        if (difficulty) figureToUpdate.difficulty = difficulty;
+        if (images) figureToUpdate.images = images;
+
+        jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+
+        return { message: "Figure updated successfully", updatedFigure: figureToUpdate };
+    }
+
+    static deleteFigure = (figureId: string) => {
+        try {
             const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
 
-            const figureToUpdate = trapecioData.Trapecio.find((figure: any) => figure.Id === figureId);
+            const updatedFigures = trapecioData.Trapecio.filter((figure: any) => figure.Id !== figureId);
 
-            if (!figureToUpdate) {
-                return { error: "Figure not found!" };
+            if (updatedFigures.length === trapecioData.Trapecio.length) {
+                return { error: "Figure not found" };
             }
 
-            if (name) figureToUpdate.name = name;
-            if (description) figureToUpdate.description = description;
-            if (steps) figureToUpdate.steps = steps;
-            if (difficulty) figureToUpdate.difficulty = difficulty;
-            if (images) figureToUpdate.images = images;
+            trapecioData.Trapecio = updatedFigures;
 
             jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
 
-            return { message: "Figure updated successfully", updatedFigure: figureToUpdate };
-    }
-    
+            return { message: "Successfully deleted figure" };
+        } catch (error) {
+            console.error("Error deleting figure:", error);
+            return { error: "Failed to delete figure" };
+        }
+    };
 }
 
 export { TrapezeModel }

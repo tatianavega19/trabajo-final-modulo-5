@@ -84,38 +84,6 @@
                     "image_url": "https://example.com/candelabro_invertido.jpg"
                 }
             }
-        },
-        {
-            "id": "b6fff6c2-fe34-4080-968a-34e46764644f",
-            "name": "Nombre de la figura2",
-            "description": "Descripción de la figura2",
-            "steps": [
-                "Paso 1",
-                "Paso 2",
-                "Paso 3"
-            ],
-            "difficulty": "Muy alta",
-            "images": {
-                "jpg": {
-                    "image_url": "https://example.com/imagen.jpg"
-                }
-            }
-        },
-        {
-            "id": "900a5a2e-5a94-44e2-a463-26c9f45edd37",
-            "name": "Nombre de la figura",
-            "description": "Descripción de la figura",
-            "steps": [
-                "Paso 1",
-                "Paso 2",
-                "Paso 3"
-            ],
-            "difficulty": "Muy alta",
-            "images": {
-                "jpg": {
-                    "image_url": "https://example.com/imagen.jpg"
-                }
-            }
         }
     ]
 }
