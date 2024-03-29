@@ -1,0 +1,89 @@
+{
+    "History": {
+        "description": "El trapecio aéreo es una forma de actuación circense que implica realizar acrobacias suspendidas en el aire, generalmente utilizando barras de metal llamadas trapecios. Este arte circense tiene sus orígenes en las actuaciones de trapecio de los circos del siglo XIX, y desde entonces ha evolucionado para incluir una amplia variedad de figuras y técnicas."
+    },
+    "Trapecio": [
+        {
+            "Id": "1",
+            "name": "Vuelo de ángel",
+            "description": "El vuelo de ángel es una figura clásica del trapecio aéreo que simula el movimiento de un ángel volando en el cielo. Se caracteriza por su gracia y fluidez en los movimientos.",
+            "steps": [
+                "El trapecista se agarra del trapecio con las manos y se balancea hacia adelante y hacia atrás para ganar impulso.",
+                "En el momento adecuado, el trapecista suelta el trapecio y se lanza hacia el aire, extendiendo los brazos y las piernas para imitar las alas de un ángel.",
+                "El trapecista realiza una serie de giros y piruetas en el aire antes de volver a agarrar el trapecio para aterrizar con seguridad."
+            ],
+            "difficulty": "Alta",
+            "images": {
+                "jpg": {
+                    "image_url": "https://example.com/vuelo_de_angel.jpg"
+                }
+            }
+        },
+        {
+            "Id": "2",
+            "name": "Doble voltereta",
+            "description": "La doble voltereta es una figura avanzada que requiere fuerza, equilibrio y coordinación. Consiste en realizar dos giros completos en el aire antes de volver a agarrar el trapecio.",
+            "steps": [
+                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
+                "En el momento adecuado, el trapecista suelta el trapecio y se lanza hacia el aire, realizando una voltereta completa.",
+                "Antes de completar la primera voltereta, el trapecista extiende el cuerpo y realiza una segunda voltereta en el aire.",
+                "Finalmente, el trapecista vuelve a agarrar el trapecio con las manos para completar la figura con éxito."
+            ],
+            "difficulty": "Muy alta",
+            "images": {
+                "jpg": {
+                    "image_url": "https://example.com/doble_voltereta.jpg"
+                }
+            }
+        },
+        {
+            "Id": "3",
+            "name": "Salto mortal",
+            "description": "El salto mortal es una figura espectacular que consiste en realizar un giro completo en el aire y volver a agarrar el trapecio.",
+            "steps": [
+                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
+                "En el momento adecuado, el trapecista suelta el trapecio y se lanza hacia el aire, realizando un giro completo.",
+                "Con precisión milimétrica, el trapecista vuelve a agarrar el trapecio con las manos para completar la figura."
+            ],
+            "difficulty": "Muy alta",
+            "images": {
+                "jpg": {
+                    "image_url": "https://example.com/salto_mortal.jpg"
+                }
+            }
+        },
+        {
+            "Id": "4",
+            "name": "Vuelo del fénix",
+            "description": "El vuelo del fénix es una figura impresionante que simula el vuelo de un ave mítica. Requiere un alto nivel de destreza y control.",
+            "steps": [
+                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
+                "Al alcanzar la altura máxima, el trapecista suelta el trapecio y se lanza hacia el aire, extendiendo los brazos y las piernas para imitar las alas de un fénix.",
+                "Realiza una serie de giros y movimientos acrobáticos en el aire antes de volver a agarrar el trapecio para aterrizar con gracia."
+            ],
+            "difficulty": "Extrema",
+            "images": {
+                "jpg": {
+                    "image_url": "https://example.com/vuelo_del_fenix.jpg"
+                }
+            }
+        },
+        {
+            "Id": "5",
+            "name": "Candelabro invertido",
+            "description": "El candelabro invertido es una figura desafiante que implica sostenerse boca abajo en el trapecio con las piernas extendidas hacia arriba. Requiere fuerza, equilibrio y flexibilidad.",
+            "steps": [
+                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
+                "En el momento adecuado, el trapecista suelta el trapecio y realiza un giro hacia atrás, extendiendo las piernas hacia arriba para sostenerse en posición invertida.",
+                "Mantiene la posición del candelabro invertido durante unos segundos, mostrando control y estabilidad.",
+                "Finalmente, el trapecista vuelve a agarrar el trapecio con las manos para completar la figura de manera segura."
+            ],
+            "difficulty": "Alta",
+            "images": {
+                "jpg": {
+                    "image_url": "https://example.com/candelabro_invertido.jpg"
+                }
+            }
+        }
+    ]
+}

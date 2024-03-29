@@ -26,3 +26,6 @@ Content-Type: application/json
 
 ### Buscar por Id
 GET http://localhost:1904/api/users/5f42e556-b69b-4945-895e-467d21fec7c0
+
+### Mostrar todas las figuras
+GET http://localhost:1904/api/trapeze

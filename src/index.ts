@@ -1,6 +1,7 @@
 import express from "express";
 import info from "./database/info.json";
 import { userRouter } from "./router/user";
+import { trapezeRouter } from "./router/aerialTrapeze";
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/api/users", userRouter);
+app.use("/api/trapeze", trapezeRouter)
 
 app.use("*", (req, res) => {
   res.status(404).json({ error: "Resourse not found" });
