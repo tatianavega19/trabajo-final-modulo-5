@@ -4,5 +4,6 @@ import { Router } from "express";
 const trapezeRouter = Router();
 
 trapezeRouter.get('/',TrapezeController.getAllFigures);
+trapezeRouter.get('/history', TrapezeController.getHistory);
 
 export { trapezeRouter }

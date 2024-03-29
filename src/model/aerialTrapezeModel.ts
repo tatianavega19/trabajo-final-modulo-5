@@ -1,4 +1,5 @@
 import jsonfile from "jsonfile";
+import { dirname } from "../database/dirname";
 
 class TrapezeModel {
     static getAllFigures() {
@@ -11,6 +12,11 @@ class TrapezeModel {
             difficulty: figure.difficulty,
             images: figure.images
         }));
+    }
+
+    static getHistory (){
+        const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
+        return trapecioData.History;
     }
 }
 
