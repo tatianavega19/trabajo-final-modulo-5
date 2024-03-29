@@ -18,6 +18,18 @@ class TrapezeModel {
         const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
         return trapecioData.History;
     }
+
+    static readFigureById(FigureId: string){
+        const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
+        const figure = trapecioData.Trapecio.find((f: any) => f.Id === FigureId);
+
+        if (!figure) {
+            return { error: "Figure not found!" };
+        }
+
+        return figure;
+    }
+
 }
 
 export { TrapezeModel }

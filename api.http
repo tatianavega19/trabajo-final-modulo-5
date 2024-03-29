@@ -32,3 +32,6 @@ GET http://localhost:1904/api/trapeze
 
 ### History
 GET http://localhost:1904/api/trapeze/history
+
+### Buscar por Id
+GET http://localhost:1904/api/trapeze/1

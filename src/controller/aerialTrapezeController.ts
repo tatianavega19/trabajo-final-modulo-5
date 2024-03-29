@@ -8,14 +8,26 @@ abstract class TrapezeController {
     };
 
     static getHistory = (req: Request, res: Response) => {
+        const history = TrapezeModel.getHistory();
+        res.json(history);
+    };
+
+    static getFigureById = (req: Request, res: Response) => {
+        const FigureId = req.params.id;
+
         try {
-            const history = TrapezeModel.getHistory();
-            res.json(history);
+            const user = TrapezeModel.readFigureById(FigureId);
+
+            if ("error" in user) {
+                return res.status(404).json(user);
+            } else {
+                return res.json(user);
+            }
         } catch (error) {
-            console.error("Error getting history:", error);
-            res.status(500).json({ error: "Internal server error" });
-        }
+            console.error("Error reading user by ID");
+            return res.status(500).json({ error: "Server error" });
+        };
     }
 }
 
-export {TrapezeController}
+export { TrapezeController }
