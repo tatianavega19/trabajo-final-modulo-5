@@ -107,6 +107,17 @@ abstract class UserController {
 
         res.status(201).json(response);
     };
+
+    static deleteUser = (req: Request, res: Response) => {
+        const { username } = req.params;
+        const response = UserModel.deleteUser(username);
+
+        if (!response.message) {
+            return res.status(400).json({ error: "Error to delete user" });
+        }
+
+        return res.json(response);
+    }
 };
 
 export { UserController }

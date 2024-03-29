@@ -10,5 +10,6 @@ userRouter.post("/register", UserController.registerUser);
 userRouter.post("/login", UserController.loginUser)
 userRouter.patch("/:username", validatorAuth, UserController.updateUser);
 userRouter.delete("/logout", validatorAuth, UserController.logout)
+userRouter.delete("/:username", validatorAuth, UserController.deleteUser);
 
 export { userRouter }

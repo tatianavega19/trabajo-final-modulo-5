@@ -31,14 +31,6 @@
             "email": "taty4@gmail.com",
             "phoneNumber": 3489489237,
             "token": ""
-        },
-        {
-            "id": "5f42e556-b69b-4945-895e-467d21fec7c0",
-            "username": "Pepito Lopez",
-            "password": "7a5df5ffa0dec2228d90b8d0a0f1b0767b748b0a41314c123075b8289e4e053f",
-            "email": "pepito5@gmail.com",
-            "phoneNumber": 9876543210,
-            "token": "e112db18-65c2-4026-a130-60572050c8a3"
         }
     ]
 }

@@ -99,7 +99,7 @@ class UserModel {
     };
 
     static updateUser = (userData: any) => {
-        const { email, username, password, phoneNumber,usernameParam } = userData;
+        const { email, username, password, phoneNumber, usernameParam } = userData;
 
         const userFound = this.findUser(usernameParam);
 
@@ -108,13 +108,34 @@ class UserModel {
         if (email) userFound.email = email;
         if (username) userFound.username = username;
         if (password) userFound.password = password;
-        if(phoneNumber) userFound.phoneNumber = phoneNumber
+        if (phoneNumber) userFound.phoneNumber = phoneNumber
 
         this.writeDbUser();
         return {
             message: "user update",
             user: { email: userFound.email, username: userFound.username },
         };
+    };
+
+    static deleteUser = (username: string) => {
+        try {
+            const usersData = jsonfile.readFileSync("./src/database/users.json");
+
+            const updatedUsers = usersData.users.filter((user: any) => user.username !== username);
+
+            if (updatedUsers.length === usersData.users.length) {
+                return { error: "User not found" };
+            }
+
+            usersData.users = updatedUsers;
+
+            jsonfile.writeFileSync("./src/database/users.json", usersData);
+
+            return { message: "Successfully delete user" };
+        } catch (error) {
+            console.error("Error deleting user:", error);
+            return { error: "Failed to delete user" };
+        }
     };
 };
 
