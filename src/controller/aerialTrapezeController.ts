@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { TrapezeModel } from "../model/aerialTrapezeModel";
+import { validatePartialUser } from "../validation/validationSchema";
 
 abstract class TrapezeController {
     static getAllFigures = (req: Request, res: Response) => {
@@ -39,11 +40,31 @@ abstract class TrapezeController {
         const result = TrapezeModel.createFigure({ name, description, steps, difficulty, images });
 
         if (result.success) {
-            res.status(201).json({ message: "Figure created successfully", name});
+            res.status(201).json({ message: "Figure created successfully", name });
         } else {
             console.error("Error creating figure:", result.error);
             res.status(500).json({ error: "Error creating figure" });
         }
+    }
+
+    static updateFigure = (req: Request, res: Response) => {
+
+        const validate = validatePartialUser(req.body);
+
+        if (!validate.success)
+            return res.status(400).json({ error: validate.error });
+
+        const figureId = req.params.id;
+
+
+        const figureData = { figureId, ...req.body };
+
+        const response = TrapezeModel.updateFigure(figureData);
+
+        if (response.error)
+            return res.status(400).json(response);
+
+        res.status(200).json(response);
     }
 }
 

@@ -2,6 +2,7 @@ import jsonfile from "jsonfile";
 import crypto from "node:crypto";
 
 class TrapezeModel {
+
     static getAllFigures() {
         const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
         return trapecioData.Trapecio.map((figure: any) => ({
@@ -49,6 +50,29 @@ class TrapezeModel {
             return { success: false, error: "Error creating figure" };
         }
     }
+
+    static updateFigure(figureData: any) {
+        const { name, description, steps, difficulty, images, figureId } = figureData;
+
+            const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
+
+            const figureToUpdate = trapecioData.Trapecio.find((figure: any) => figure.Id === figureId);
+
+            if (!figureToUpdate) {
+                return { error: "Figure not found!" };
+            }
+
+            if (name) figureToUpdate.name = name;
+            if (description) figureToUpdate.description = description;
+            if (steps) figureToUpdate.steps = steps;
+            if (difficulty) figureToUpdate.difficulty = difficulty;
+            if (images) figureToUpdate.images = images;
+
+            jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+
+            return { message: "Figure updated successfully", updatedFigure: figureToUpdate };
+    }
+    
 }
 
 export { TrapezeModel }

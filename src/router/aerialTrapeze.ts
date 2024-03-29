@@ -7,5 +7,6 @@ trapezeRouter.get('/',TrapezeController.getAllFigures);
 trapezeRouter.get('/history', TrapezeController.getHistory);
 trapezeRouter.get('/:id',TrapezeController.getFigureById);
 trapezeRouter.post('/create', TrapezeController.createFigure);
+trapezeRouter.patch('/:id',TrapezeController.updateFigure);
 
 export { trapezeRouter }
