@@ -1,15 +1,16 @@
 import { TrapezeController } from "../controller/aerialTrapezeController";
 import { Router } from "express";
+import {validatorAuth} from "../middleware/validator"
 
 const trapezeRouter = Router();
 
-trapezeRouter.get('/',TrapezeController.getAllFigures);
-trapezeRouter.get('/history',TrapezeController.getHistory);
-trapezeRouter.get('/:id',TrapezeController.getFigureById);
-trapezeRouter.get('/image/:id',TrapezeController.getImageById);
-trapezeRouter.get('/steps/:name', TrapezeController.getStepsByName)
-trapezeRouter.post('/create',TrapezeController.createFigure);
-trapezeRouter.patch('/:id',TrapezeController.updateFigure);
-trapezeRouter.delete('/:id',TrapezeController.deleteFigure);
+trapezeRouter.get('/',validatorAuth,TrapezeController.getAllFigures);
+trapezeRouter.get('/history',validatorAuth,TrapezeController.getHistory);
+trapezeRouter.get('/:id',validatorAuth,TrapezeController.getFigureById);
+trapezeRouter.get('/image/:id',validatorAuth,TrapezeController.getImageById);
+trapezeRouter.get('/steps/:name',validatorAuth,TrapezeController.getStepsByName)
+trapezeRouter.post('/create',validatorAuth,TrapezeController.createFigure);
+trapezeRouter.patch('/:id',validatorAuth,TrapezeController.updateFigure);
+trapezeRouter.delete('/:id',validatorAuth,TrapezeController.deleteFigure);
 
 export { trapezeRouter }

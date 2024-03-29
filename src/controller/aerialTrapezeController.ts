@@ -80,12 +80,13 @@ abstract class TrapezeController {
 
     static getImageById = (req: Request, res: Response) => {
         const { id } = req.params;
-        const imageUrl = TrapezeModel.getUrlImage(id);
+        const result = TrapezeModel.getUrlImage(id);
 
-        if (typeof imageUrl === "string") {
-            res.status(200).json({ imageUrl });
+        if (typeof result === "string") {
+            res.status(200).json({ error: result }); 
         } else {
-            res.status(404).json({ error: imageUrl });
+            const { name, imageUrl } = result;
+            res.status(200).json({ name, imageUrl });
         }
     }
 
