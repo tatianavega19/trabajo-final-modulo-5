@@ -73,7 +73,7 @@ class TrapezeModel {
         return { message: "Figure updated successfully", updatedFigure: figureToUpdate };
     }
 
-    static deleteFigure = (figureId: string) => {
+    static deleteFigure (figureId: string)  {
         try {
             const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
 
@@ -93,6 +93,28 @@ class TrapezeModel {
             return { error: "Failed to delete figure" };
         }
     };
+
+    static getUrlImage (id: string) {
+        try {
+            const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
+            const figure = trapecioData.Trapecio.find((figure: any) => figure.Id === id);
+    
+            if (!figure) {
+                throw new Error(`Figure with ID ${id} not found`);
+            }
+    
+            const { name, images } = figure;
+            const imageUrl = images.jpg.image_url;
+    
+            if (!imageUrl) {
+                throw new Error(`Image URL not found for the figure with ID ${id}`);
+            }
+    
+            return { name, imageUrl };
+        } catch (error) {
+            return error instanceof Error ? error.message : "Error fetching image info";
+        }
+    }
 }
 
 export { TrapezeModel }
