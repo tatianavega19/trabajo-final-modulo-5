@@ -28,6 +28,23 @@ abstract class TrapezeController {
             return res.status(500).json({ error: "Server error" });
         };
     }
+
+    static createFigure = (req: Request, res: Response) => {
+        const { name, description, steps, difficulty, images } = req.body;
+
+        if (!name || !description || !steps || !difficulty || !images) {
+            return res.status(400).json({ error: "All fields are required: name, description, steps, difficulty, images" });
+        }
+
+        const result = TrapezeModel.createFigure({ name, description, steps, difficulty, images });
+
+        if (result.success) {
+            res.status(201).json({ message: "Figure created successfully", name});
+        } else {
+            console.error("Error creating figure:", result.error);
+            res.status(500).json({ error: "Error creating figure" });
+        }
+    }
 }
 
 export { TrapezeController }

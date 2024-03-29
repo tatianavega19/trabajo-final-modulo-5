@@ -35,3 +35,23 @@ GET http://localhost:1904/api/trapeze/history
 
 ### Buscar por Id
 GET http://localhost:1904/api/trapeze/1
+
+### Crear figuras
+POST http://localhost:1904/api/trapeze/create
+Content-Type: application/json
+
+{
+  "name": "Nombre de la figura",
+  "description": "Descripción de la figura",
+  "steps": [
+    "Paso 1",
+    "Paso 2",
+    "Paso 3"
+  ],
+  "difficulty": "Muy alta",
+  "images": {
+    "jpg": {
+      "image_url": "https://example.com/imagen.jpg"
+    }
+  }
+}

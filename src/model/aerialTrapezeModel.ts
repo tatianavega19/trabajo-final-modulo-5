@@ -1,5 +1,5 @@
 import jsonfile from "jsonfile";
-import { dirname } from "../database/dirname";
+import crypto from "node:crypto";
 
 class TrapezeModel {
     static getAllFigures() {
@@ -14,12 +14,12 @@ class TrapezeModel {
         }));
     }
 
-    static getHistory (){
+    static getHistory() {
         const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
         return trapecioData.History;
     }
 
-    static readFigureById(FigureId: string){
+    static readFigureById(FigureId: string) {
         const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
         const figure = trapecioData.Trapecio.find((f: any) => f.Id === FigureId);
 
@@ -30,6 +30,25 @@ class TrapezeModel {
         return figure;
     }
 
+    static createFigure(figureData: any) {
+        try {
+            const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
+            const { name, description, steps, difficulty, images } = figureData;
+
+            const id = crypto.randomUUID();
+
+            const newFigure = { id, name, description, steps, difficulty, images };
+
+            trapecioData.Trapecio.push(newFigure);
+
+            jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+
+            return { success: true, id };
+        } catch (error) {
+            console.error("Error creating figure:", error);
+            return { success: false, error: "Error creating figure" };
+        }
+    }
 }
 
 export { TrapezeModel }
