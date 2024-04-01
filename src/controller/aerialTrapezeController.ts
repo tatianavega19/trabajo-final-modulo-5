@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { TrapezeModel } from "../model/aerialTrapezeModel";
-import { validatePartialUser } from "../validation/validationSchema";
+import { validatePartiaTrapeze, } from "../validation/validationSchemaTrapeze";
 
 abstract class TrapezeController {
     static getAllFigures = (req: Request, res: Response) => {
-        const figures = TrapezeModel.getAllFigures();
+        const figures = TrapezeModel.getAllFigures(req.query);
         res.json(figures);
     };
 
@@ -15,91 +15,69 @@ abstract class TrapezeController {
 
     static getFigureById = (req: Request, res: Response) => {
         const FigureId = req.params.id;
+        const result = TrapezeModel.readFigureById(FigureId);
+        if (result.error) return res.status(404).json(result);
 
-        try {
-            const user = TrapezeModel.readFigureById(FigureId);
-
-            if ("error" in user) {
-                return res.status(404).json(user);
-            } else {
-                return res.json(user);
-            }
-        } catch (error) {
-            console.error("Error reading user by ID");
-            return res.status(500).json({ error: "Server error" });
-        };
-    }
+        return res.json(result);
+    };
 
     static createFigure = (req: Request, res: Response) => {
         const { name, description, steps, difficulty, images } = req.body;
 
         if (!name || !description || !steps || !difficulty || !images) {
             return res.status(400).json({ error: "All fields are required: name, description, steps, difficulty, images" });
-        }
+        };
 
         const result = TrapezeModel.createFigure({ name, description, steps, difficulty, images });
 
-        if (result.success) {
-            res.status(201).json({ message: "Figure created successfully", name });
-        } else {
-            console.error("Error creating figure:", result.error);
-            res.status(500).json({ error: "Error creating figure" });
-        }
-    }
+        if (result.message) res.status(201).json({ message: "Figure created successfully", name });
+
+        res.status(500).json({ error: "Error creating figure" });
+    };
 
     static updateFigure = (req: Request, res: Response) => {
 
-        const validate = validatePartialUser(req.body);
+        const validate = validatePartiaTrapeze(req.body);
 
-        if (!validate.success)
-            return res.status(400).json({ error: validate.error });
+        if (!validate.success) return res.status(400).json({ error: validate.error });
 
         const figureId = req.params.id;
 
-
         const figureData = { figureId, ...req.body };
 
-        const response = TrapezeModel.updateFigure(figureData);
+        const result = TrapezeModel.updateFigure(figureData);
 
-        if (response.error)
-            return res.status(400).json(response);
+        if (result.error) return res.status(400).json(result);
 
-        res.status(200).json(response);
+        res.status(200).json(result);
     };
 
     static deleteFigure = (req: Request, res: Response) => {
         const { id } = req.params;
-        const response = TrapezeModel.deleteFigure(id);
+        const result = TrapezeModel.deleteFigure(id);
 
-        if (!response.message) {
-            return res.status(400).json({ error: "Error to delete user" });
-        }
+        if (!result.message) return res.status(400).json({ error: "error request" });
 
-        return res.json(response);
-    }
+        return res.json(result);
+    };
 
     static getImageById = (req: Request, res: Response) => {
         const { id } = req.params;
         const result = TrapezeModel.getUrlImage(id);
 
-        if (typeof result === "string") {
-            res.status(200).json({ error: result }); 
-        } else {
-            const { name, imageUrl } = result;
-            res.status(200).json({ name, imageUrl });
-        }
-    }
+        if (result.error) res.status(200).json({ error: result });
+
+        return res.status(200).json({ message: result });
+    };
 
     static getStepsByName = (req: Request, res: Response) => {
         const { name } = req.params;
-        const steps = TrapezeModel.getStepsByName(name);
+        const result = TrapezeModel.getStepsByName(name);
 
-        if (steps) {
-            res.status(200).json(steps)
-        } else {
-            res.status(404).json({ error: `Steps not found for figure with name '${name}'` });
-        }
-    }
-}
+        if (result.error) res.status(200).json(result);
 
-export { TrapezeController }
+        res.status(404).json({ error: `Steps not foun` });
+    };
+};
+
+export { TrapezeController };

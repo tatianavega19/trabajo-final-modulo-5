@@ -5,66 +5,64 @@ class TrapezeModel {
 
     static readDatabase() {
         return jsonfile.readFileSync("./src/database/trapeze.json");
-    }
+    };
 
-    static getAllFigures() {
-        const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
-        return trapecioData.Trapecio.map((figure: any) => ({
-            id: figure.Id,
+    static getAllFigures(query: any) {
+        const { difficulty } = query
+        const trapecioData = this.readDatabase();
+
+        const mapFigure = (figure: any) => ({
+            id: figure.id,
             name: figure.name,
             description: figure.description,
             steps: figure.steps,
             difficulty: figure.difficulty,
             images: figure.images
-        }));
-    }
+        });
+
+        if (difficulty) {
+            const trapecioDataByDifficulty = trapecioData.trapecio.filter((figure: any) => figure.difficulty.toLowerCase() === difficulty.toLocaleLowerCase())
+            return trapecioDataByDifficulty.map(mapFigure);
+        };
+
+        return trapecioData.trapecio.map(mapFigure);
+    };
 
     static getHistory() {
-        const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
-        return trapecioData.History;
-    }
+        const trapecioData = this.readDatabase();
+        return trapecioData.history;
+    };
 
     static readFigureById(FigureId: string) {
-        const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
-        const figure = trapecioData.Trapecio.find((f: any) => f.Id === FigureId);
+        const trapecioData = this.readDatabase();
+        const figure = trapecioData.trapecio.find((f: any) => f.id === FigureId);
 
-        if (!figure) {
-            return { error: "Figure not found!" };
-        }
+        if (!figure) return { error: "Figure not found!" };
 
         return figure;
-    }
+    };
 
     static createFigure(figureData: any) {
-        try {
-            const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
-            const { name, description, steps, difficulty, images } = figureData;
+        const trapecioData = this.readDatabase();
+        const { name, description, steps, difficulty, images } = figureData;
 
-            const id = crypto.randomUUID();
+        const id = crypto.randomUUID();
 
-            const newFigure = { id, name, description, steps, difficulty, images };
+        const newFigure = { id, name, description, steps, difficulty, images };
 
-            trapecioData.Trapecio.push(newFigure);
+        trapecioData.trapecio.push(newFigure);
 
-            jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+        jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
 
-            return { success: true, id };
-        } catch (error) {
-            console.error("Error creating figure:", error);
-            return { success: false, error: "Error creating figure" };
-        }
-    }
+        return { message: "successfully created figure", id };
+    };
 
     static updateFigure(figureData: any) {
         const { name, description, steps, difficulty, images, figureId } = figureData;
+        const trapecioData = this.readDatabase();
+        const figureToUpdate = trapecioData.trapecio.find((figure: any) => figure.id === figureId);
 
-        const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
-
-        const figureToUpdate = trapecioData.Trapecio.find((figure: any) => figure.Id === figureId);
-
-        if (!figureToUpdate) {
-            return { error: "Figure not found!" };
-        }
+        if (!figureToUpdate) return { error: "Figure not found!" };
 
         if (name) figureToUpdate.name = name;
         if (description) figureToUpdate.description = description;
@@ -75,69 +73,50 @@ class TrapezeModel {
         jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
 
         return { message: "Figure updated successfully", updatedFigure: figureToUpdate };
-    }
+    };
 
     static deleteFigure(figureId: string) {
-        try {
-            const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
+        const trapecioData = this.readDatabase();
 
-            const updatedFigures = trapecioData.Trapecio.filter((figure: any) => figure.Id !== figureId);
+        const updatedFigures = trapecioData.trapecio.filter((figure: any) => figure.id.toLowerCase() !== figureId.toLowerCase());
 
-            if (updatedFigures.length === trapecioData.Trapecio.length) {
-                return { error: "Figure not found" };
-            }
+        if (updatedFigures.length === trapecioData.trapecio.length) return { error: "Figure not found" };
 
-            trapecioData.Trapecio = updatedFigures;
+        trapecioData.trapecio = updatedFigures;
 
-            jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+        jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
 
-            return { message: "Successfully deleted figure" };
-        } catch (error) {
-            console.error("Error deleting figure:", error);
-            return { error: "Failed to delete figure" };
-        }
+        return { message: "Successfully deleted figure" };
     };
 
     static getUrlImage(id: string) {
-        try {
-            const trapecioData = jsonfile.readFileSync("./src/database/trapeze.json");
-            const figure = trapecioData.Trapecio.find((figure: any) => figure.Id === id);
+        const trapecioData = this.readDatabase();
+        const figure = trapecioData.trapecio.find((figure: any) => figure.id.toLowerCase() === id.toLowerCase());
 
-            if (!figure) {
-                throw new Error(`Figure with ID ${id} not found`);
-            }
+        if (!figure) return { error: `Figure with ID ${id} not found` };
 
-            const { name, images } = figure;
-            const imageUrl = images.jpg.image_url;
+        const { name, images } = figure;
+        const imageUrl = images.jpg.image_url;
 
-            if (!imageUrl) {
-                throw new Error(`Image URL not found for the figure with ID ${id}`);
-            }
+        if (!imageUrl) return { error: `Image URL not found for the figure with ID ${id}` };
 
-            return { name, imageUrl };
-        } catch (error) {
-            return error instanceof Error ? error.message : "Error fetching image info";
-        }
-    }
+        return { name, imageUrl };
+    };
 
     static getStepsByName(name: string) {
         const trapecioData = this.readDatabase();
-        const figure = trapecioData.Trapecio.find((figure: any) => figure.name === name);
+        const figure = trapecioData.trapecio.find((figure: any) => figure.name.toLowerCase() === name.toLowerCase());
 
-        if (!figure) {
-            throw new Error(`Figure with name '${name}' not found`);
-        }
+        if (!figure) return { error: `Figure with name '${name}' not found` };
 
         const { steps, images } = figure;
-        const imageUrl = images?.jpg?.image_url;
+        const imageUrl = images.jpg.image_url;
 
-        if (!steps || !imageUrl) {
-            throw new Error(`Steps not found for figure with name '${name}'`);
-        }
+        if (!steps || !imageUrl) return { error: `Steps not found for figure with name:'${name}'` };
 
-        return { name, steps, imageUrl };
+        return { message: name, steps, imageUrl };
 
-    }
-}
+    };
+};
 
-export { TrapezeModel }
+export { TrapezeModel };

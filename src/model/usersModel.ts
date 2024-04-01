@@ -1,11 +1,10 @@
 import jsonfile from "jsonfile";
 import crypto from "node:crypto";
-import users from "../database/users.json"
-import { writeFile } from "jsonfile"
-import { dirname } from "../database/dirname"
+import users from "../database/users.json";
+import { writeFile } from "jsonfile";
+import { dirname } from "../database/dirname";
 
 class UserModel {
-
     static findUser(username: string) {
         return users.users.find(
             (user) => user.username.toLowerCase() === username.toLowerCase()
@@ -26,30 +25,26 @@ class UserModel {
     };
 
     static registerUser(userData: any) {
-        try {
-            const usersData = jsonfile.readFileSync("./src/database/users.json");
-            const { username, password, email, phoneNumber } = userData;
+        const usersData = jsonfile.readFileSync("./src/database/users.json");
+        const { username, password, email, phoneNumber } = userData;
 
-            const existingUser = usersData.users.find((user: any) => user.username === username || user.email === email);
-            if (existingUser) {
-                return 409;
-            };
+        const existingUser = usersData.users.find(
+            (user: any) => user.username === username || user.email === email
+        );
 
-            const hashedPassword = crypto.createHash("sha256").update(password).digest("hex")
+        if (existingUser) return { error: "Existing user" };
 
-            const id = crypto.randomUUID();
+        const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
 
-            const newUser = { id, username, password: hashedPassword, email, phoneNumber, token: "" }
+        const id = crypto.randomUUID();
 
-            usersData.users.push(newUser)
+        const newUser = { id, username, password: hashedPassword, email, phoneNumber, token: "" };
 
-            jsonfile.writeFileSync("./src/database/users.json", usersData)
+        usersData.users.push(newUser);
 
-            return 201;
-        } catch (error) {
-            console.error("Error registering user:", error)
-            return 500;
-        };
+        jsonfile.writeFileSync("./src/database/users.json", usersData);
+
+        return { message: "Created user" };
     };
 
     static loginUser(userData: any) {
@@ -57,45 +52,46 @@ class UserModel {
 
         const userFound = this.findUser(username);
 
-        if (!userFound) return 404;
+        if (!userFound) return { error: "Existing user" };
 
         const hashPassword = crypto
             .createHash("sha256")
             .update(password)
             .digest("hex");
 
-        if (userFound.password !== hashPassword) return 400;
+        if (userFound.password !== hashPassword) return { error: "Bad request" };
 
         const token = crypto.randomUUID();
 
         userFound.token = token;
         this.writeDbUser();
 
-        return token;
+        return { message: token };
     };
 
     static readUserById(userId: string) {
         const user = users.users.find((user: any) => user.id === userId);
 
-        if (!user) {
-            return { error: "User not found!" };
-        }
+        if (!user) return { error: "User not found!" };
 
         const { id, username, email } = user;
 
-        return { id, username, email };
+        return { message: { id, username, email } };
     };
 
     static logout = (username: any) => {
-        const user = users.users.find((u) => u.username === username);
+        const lowercaseUsername = username.toLowerCase();
+        const user = users.users.find((u) => u.username.toLowerCase() === lowercaseUsername);
 
-        if (!user) return 404;
+        console.log(lowercaseUsername);
 
-        user.token = ""
+        if (!user) return { error: "User not found" };
+
+        user.token = "";
 
         writeFile("./src/database/users.json", users);
 
-        return { message: "Log out User" }
+        return { message: "Log out User" };
     };
 
     static updateUser = (userData: any) => {
@@ -118,25 +114,19 @@ class UserModel {
     };
 
     static deleteUser = (username: string) => {
-        try {
-            const usersData = jsonfile.readFileSync("./src/database/users.json");
 
-            const updatedUsers = usersData.users.filter((user: any) => user.username !== username);
+        const usersData = jsonfile.readFileSync("./src/database/users.json");
 
-            if (updatedUsers.length === usersData.users.length) {
-                return { error: "User not found" };
-            }
+        const updatedUsers = usersData.users.filter((user: any) => user.username.toLowerCase() !== username.toLowerCase());
 
-            usersData.users = updatedUsers;
+        if (updatedUsers.length === usersData.users.length) return { error: "User not found" };
 
-            jsonfile.writeFileSync("./src/database/users.json", usersData);
+        usersData.users = updatedUsers;
 
-            return { message: "Successfully delete user" };
-        } catch (error) {
-            console.error("Error deleting user:", error);
-            return { error: "Failed to delete user" };
-        }
+        jsonfile.writeFileSync("./src/database/users.json", usersData);
+
+        return { message: "Successfully delete user" };
     };
 };
 
-export { UserModel }
+export { UserModel };
