@@ -31,22 +31,6 @@
             "email": "taty4@gmail.com",
             "phoneNumber": 3489489237,
             "token": ""
-        },
-        {
-            "id": "e76cd807-9d51-41d7-a7d1-959a6128b4ea",
-            "username": "Pepito Lopez",
-            "password": "7a5df5ffa0dec2228d90b8d0a0f1b0767b748b0a41314c123075b8289e4e053f",
-            "email": "pepito5@gmail.com",
-            "phoneNumber": 3489489237,
-            "token": "19011eb9-be93-4787-8f07-d0e5cbc2afef"
-        },
-        {
-            "id": "b8b224c0-8705-440e-8422-c39b31239c0c",
-            "username": "Quimey Carro",
-            "password": "9cb63503cad3b6fb3788c0ebc65298ce80520803d323c5133b9c6ca06981d0c5",
-            "email": "Quimey6@gmail.com",
-            "phoneNumber": 3489520108,
-            "token": "223be966-ef7f-46a2-bc94-12d41f3b7d34"
         }
     ]
 }

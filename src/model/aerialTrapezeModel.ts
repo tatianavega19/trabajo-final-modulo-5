@@ -54,6 +54,11 @@ class TrapezeModel {
 
         jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
 
+        const updatedTrapecioData = this.readDatabase();
+        const createdFigure = updatedTrapecioData.trapecio.find((figure: any) => figure.id === id);
+    
+        if (!createdFigure) return { error: "Error creating figure" };
+
         return { message: "successfully created figure", id };
     };
 

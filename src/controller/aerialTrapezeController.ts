@@ -30,9 +30,9 @@ abstract class TrapezeController {
 
         const result = TrapezeModel.createFigure({ name, description, steps, difficulty, images });
 
-        if (result.message) res.status(201).json({ message: "Figure created successfully", name });
+        if (result.error)  res.status(500).json({ error: "Error creating figure" })
 
-        res.status(500).json({ error: "Error creating figure" });
+        res.status(201).json({ message: "Figure created successfully", name })
     };
 
     static updateFigure = (req: Request, res: Response) => {

@@ -75,17 +75,19 @@ POST http://localhost:1904/api/trapeze/create
 Content-Type: application/json
 
 {
-  "name": "Nombre de la figura",
-  "description": "Descripción de la figura",
+  "name": "Split",
+  "description": "The Split figure consists of opening your legs in opposite directions while you are suspended in the air with the help of the trapeze. The trapeze artist performs a series of movements to gain momentum and height before releasing from the trapeze and extending the legs to the sides in a split position. The position is held for a set amount of time, demonstrating control and flexibility, before grabbing the trapeze again to safely complete the figure.",
   "steps": [
-    "Paso 1",
-    "Paso 2",
-    "Paso 3"
+    "The aerialist swings back and forth to gain momentum and height.",
+    "At the right moment, the trapeze artist releases the trapeze and launches himself into the air.",
+    "While in the air, the trapeze artist extends his legs to the sides in a split position",
+    "The split position is held for a few seconds, showing control and flexibility.",
+    "Finally, the trapeze artist grabs the trapeze with his hands again to safely complete the figure."
   ],
-  "difficulty": "Muy alta",
+  "difficulty": "High",
   "images": {
     "jpg": {
-      "image_url": "https://example.com/imagen.jpg"
+      "image_url": "https://i.ytimg.com/vi/KlxqkXq-OU4/maxresdefault.jpg"
     }
   }
 }

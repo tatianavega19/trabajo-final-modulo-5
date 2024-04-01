@@ -4,100 +4,71 @@
     },
     "trapecio": [
         {
-            "id": "1",
-            "name": "Vuelo de ángel",
-            "description": "El vuelo de ángel es una figura clásica del trapecio aéreo que simula el movimiento de un ángel volando en el cielo. Se caracteriza por su gracia y fluidez en los movimientos.",
+            "id": "605e9b99-b341-4cf9-bbb5-39a1e7b8b362",
+            "name": "Split",
+            "description": "The Split figure consists of opening your legs in opposite directions while you are suspended in the air with the help of the trapeze. The trapeze artist performs a series of movements to gain momentum and height before releasing from the trapeze and extending the legs to the sides in a split position. The position is held for a set amount of time, demonstrating control and flexibility, before grabbing the trapeze again to safely complete the figure.",
             "steps": [
-                "El trapecista se agarra del trapecio con las manos y se balancea hacia adelante y hacia atrás para ganar impulso.",
-                "En el momento adecuado, el trapecista suelta el trapecio y se lanza hacia el aire, extendiendo los brazos y las piernas para imitar las alas de un ángel.",
-                "El trapecista realiza una serie de giros y piruetas en el aire antes de volver a agarrar el trapecio para aterrizar con seguridad."
+                "The aerialist swings back and forth to gain momentum and height.",
+                "At the right moment, the trapeze artist releases the trapeze and launches himself into the air.",
+                "While in the air, the trapeze artist extends his legs to the sides in a split position",
+                "The split position is held for a few seconds, showing control and flexibility.",
+                "Finally, the trapeze artist grabs the trapeze with his hands again to safely complete the figure."
             ],
-            "difficulty": "Alta",
+            "difficulty": "High",
             "images": {
                 "jpg": {
-                    "image_url": "https://example.com/vuelo_de_angel.jpg"
+                    "image_url": "https://i.ytimg.com/vi/KlxqkXq-OU4/maxresdefault.jpg"
                 }
             }
         },
         {
-            "id": "2",
-            "name": "Doble voltereta",
-            "description": "La doble voltereta es una figura avanzada que requiere fuerza, equilibrio y coordinación. Consiste en realizar dos giros completos en el aire antes de volver a agarrar el trapecio.",
+            "id": "35ec21e5-e056-470b-a999-c5e0566b5c91",
+            "name": "squad",
+            "description": "The square is a classic aerial trapeze figure that requires balance, strength and flexibility. It consists of holding the body in a horizontal position on the trapezoid, forming a 90-degree angle with the legs extended forward.",
             "steps": [
-                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
-                "En el momento adecuado, el trapecista suelta el trapecio y se lanza hacia el aire, realizando una voltereta completa.",
-                "Antes de completar la primera voltereta, el trapecista extiende el cuerpo y realiza una segunda voltereta en el aire.",
-                "Finalmente, el trapecista vuelve a agarrar el trapecio con las manos para completar la figura con éxito."
+                "The trapeze artist holds the trapeze firmly with his hands.",
+                "With a controlled impulse, the trapeze artist lifts his legs and extends them forward, forming a 90-degree angle with the body.",
+                "Maintains team position with strength and stability, showing control and balance.",
+                "Finally, the trapeze artist returns to the upright position or moves on to other figures."
             ],
-            "difficulty": "Muy alta",
+            "difficulty": "Half",
             "images": {
                 "jpg": {
-                    "image_url": "https://example.com/doble_voltereta.jpg"
+                    "image_url": "https://i.pinimg.com/564x/2e/28/5e/2e285e3231b4f27a90cd0fa6a7eef97a.jpg"
                 }
             }
         },
         {
-            "id": "3",
-            "name": "Salto mortal",
-            "description": "El salto mortal es una figura espectacular que consiste en realizar un giro completo en el aire y volver a agarrar el trapecio.",
+            "id": "9394602b-3d1d-4beb-bc63-852cd0cc2ffe",
+            "name": "Mermaid bow",
+            "description": "The mermaid bow is an aerial trapeze figure that combines flexibility and grace. It consists of forming an arc with the body, holding the trapeze with the hands and legs, simulating the elegance of a mermaid in the sea.",
             "steps": [
-                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
-                "En el momento adecuado, el trapecista suelta el trapecio y se lanza hacia el aire, realizando un giro completo.",
-                "Con precisión milimétrica, el trapecista vuelve a agarrar el trapecio con las manos para completar la figura."
+                "The trapeze artist grabs the trapeze with both hands and lifts the body upwards.",
+                "With flexibility and control, the trapeze artist bends her body backwards forming an arc, extending her legs forward to simulate a mermaid's tail.",
+                "Maintains the position of the bow with grace and elegance, showing control and balance.",
+                "Finally, the trapeze artist returns to the upright position or moves on to other figures."
             ],
-            "difficulty": "Muy alta",
+            "difficulty": "beginner",
             "images": {
                 "jpg": {
-                    "image_url": "https://example.com/salto_mortal.jpg"
+                    "image_url": "https://i.pinimg.com/564x/de/f8/71/def8714d152da9781885196dfd3c78eb.jpg"
                 }
             }
         },
         {
-            "id": "4",
-            "name": "Vuelo del fénix",
-            "description": "El vuelo del fénix es una figura impresionante que simula el vuelo de un ave mítica. Requiere un alto nivel de destreza y control.",
+            "id": "4e4a7ef0-ba8c-4233-a4ff-46feb5af337d",
+            "name": "Flying Bed",
+            "description": "The Flying Bed is an impressive figure that simulates a person jumping and falling on a bed. It requires coordination and control to execute it successfully.",
             "steps": [
-                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
-                "Al alcanzar la altura máxima, el trapecista suelta el trapecio y se lanza hacia el aire, extendiendo los brazos y las piernas para imitar las alas de un fénix.",
-                "Realiza una serie de giros y movimientos acrobáticos en el aire antes de volver a agarrar el trapecio para aterrizar con gracia."
+                "The trapeze artist holds the trapeze with one hand and simulates jumping on the 'bed' using coordinated movements.",
+                "Performs a series of spins and acrobatic movements in the air while maintaining the simulated jumping position on the 'bed'.",
+                "Displays control and grace by executing the figure with fluidity and precision.",
+                "Finish the figure by grabbing the trapeze again gracefully to land safely."
             ],
-            "difficulty": "Extrema",
+            "difficulty": "Very high.",
             "images": {
                 "jpg": {
-                    "image_url": "https://example.com/vuelo_del_fenix.jpg"
-                }
-            }
-        },
-        {
-            "id": "5",
-            "name": "Candelabro invertido",
-            "description": "El candelabro invertido es una figura desafiante que implica sostenerse boca abajo en el trapecio con las piernas extendidas hacia arriba. Requiere fuerza, equilibrio y flexibilidad.",
-            "steps": [
-                "El trapecista se balancea hacia adelante y hacia atrás para ganar impulso y altura.",
-                "En el momento adecuado, el trapecista suelta el trapecio y realiza un giro hacia atrás, extendiendo las piernas hacia arriba para sostenerse en posición invertida.",
-                "Mantiene la posición del candelabro invertido durante unos segundos, mostrando control y estabilidad.",
-                "Finalmente, el trapecista vuelve a agarrar el trapecio con las manos para completar la figura de manera segura."
-            ],
-            "difficulty": "Alta",
-            "images": {
-                "jpg": {
-                    "image_url": "https://example.com/candelabro_invertido.jpg"
-                }
-            }
-        },
-        {
-            "id": "6e6754f3-89ea-4671-a342-5bf5f8abcfd1",
-            "name": "Nombre de la figura2",
-            "description": "Descripción de la figura3",
-            "steps": [
-                "Paso 1",
-                "Paso 2",
-                "Paso 3"
-            ],
-            "difficulty": "Muy alta",
-            "images": {
-                "jpg": {
-                    "image_url": "https://example.com/imagen.jpg"
+                    "image_url": "https://i.pinimg.com/564x/8c/e9/02/8ce902c7432eaa0b1e5fba4cd70bbf8d.jpg"
                 }
             }
         }
