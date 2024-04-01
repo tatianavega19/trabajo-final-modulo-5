@@ -9,7 +9,7 @@ class TrapezeModel {
 
     static getAllFigures(query: any) {
         const { difficulty } = query
-        const trapecioData = this.readDatabase();
+        const trapezeData = this.readDatabase();
 
         const mapFigure = (figure: any) => ({
             id: figure.id,
@@ -21,21 +21,21 @@ class TrapezeModel {
         });
 
         if (difficulty) {
-            const trapecioDataByDifficulty = trapecioData.trapecio.filter((figure: any) => figure.difficulty.toLowerCase() === difficulty.toLocaleLowerCase())
-            return trapecioDataByDifficulty.map(mapFigure);
+            const trapezeDataByDifficulty = trapezeData.trapeze.filter((figure: any) => figure.difficulty.toLowerCase() === difficulty.toLocaleLowerCase())
+            return trapezeDataByDifficulty.map(mapFigure);
         };
 
-        return trapecioData.trapecio.map(mapFigure);
+        return trapezeData.trapeze.map(mapFigure);
     };
 
     static getHistory() {
-        const trapecioData = this.readDatabase();
-        return trapecioData.history;
+        const trapezeData = this.readDatabase();
+        return trapezeData.history;
     };
 
     static readFigureById(FigureId: string) {
-        const trapecioData = this.readDatabase();
-        const figure = trapecioData.trapecio.find((f: any) => f.id === FigureId);
+        const trapezeData = this.readDatabase();
+        const figure = trapezeData.trapeze.find((f: any) => f.id === FigureId);
 
         if (!figure) return { error: "Figure not found!" };
 
@@ -43,20 +43,20 @@ class TrapezeModel {
     };
 
     static createFigure(figureData: any) {
-        const trapecioData = this.readDatabase();
+        const trapezeData = this.readDatabase();
         const { name, description, steps, difficulty, images } = figureData;
 
         const id = crypto.randomUUID();
 
         const newFigure = { id, name, description, steps, difficulty, images };
 
-        trapecioData.trapecio.push(newFigure);
+        trapezeData.trapeze.push(newFigure);
 
-        jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+        jsonfile.writeFileSync("./src/database/trapeze.json", trapezeData);
 
-        const updatedTrapecioData = this.readDatabase();
-        const createdFigure = updatedTrapecioData.trapecio.find((figure: any) => figure.id === id);
-    
+        const updatedTrapezeData = this.readDatabase();
+        const createdFigure = updatedTrapezeData.trapeze.find((figure: any) => figure.id === id);
+
         if (!createdFigure) return { error: "Error creating figure" };
 
         return { message: "successfully created figure", id };
@@ -64,8 +64,8 @@ class TrapezeModel {
 
     static updateFigure(figureData: any) {
         const { name, description, steps, difficulty, images, figureId } = figureData;
-        const trapecioData = this.readDatabase();
-        const figureToUpdate = trapecioData.trapecio.find((figure: any) => figure.id === figureId);
+        const trapezeData = this.readDatabase();
+        const figureToUpdate = trapezeData.trapeze.find((figure: any) => figure.id === figureId);
 
         if (!figureToUpdate) return { error: "Figure not found!" };
 
@@ -75,28 +75,36 @@ class TrapezeModel {
         if (difficulty) figureToUpdate.difficulty = difficulty;
         if (images) figureToUpdate.images = images;
 
-        jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+        jsonfile.writeFileSync("./src/database/trapeze.json", trapezeData);
 
-        return { message: "Figure updated successfully", updatedFigure: figureToUpdate };
+        const updatedFigure = {
+            name: figureToUpdate.name,
+            description: figureToUpdate.description,
+            steps: figureToUpdate.steps,
+            difficulty: figureToUpdate.difficulty,
+            images: figureToUpdate.images
+        };
+
+        return { message: "Figure updated successfully", updatedFigure};
     };
 
     static deleteFigure(figureId: string) {
-        const trapecioData = this.readDatabase();
+        const trapezeData = this.readDatabase();
 
-        const updatedFigures = trapecioData.trapecio.filter((figure: any) => figure.id.toLowerCase() !== figureId.toLowerCase());
+        const updatedFigures = trapezeData.trapeze.filter((figure: any) => figure.id.toLowerCase() !== figureId.toLowerCase());
 
-        if (updatedFigures.length === trapecioData.trapecio.length) return { error: "Figure not found" };
+        if (updatedFigures.length === trapezeData.trapeze.length) return { error: "Figure not found" };
 
-        trapecioData.trapecio = updatedFigures;
+        trapezeData.trapeze = updatedFigures;
 
-        jsonfile.writeFileSync("./src/database/trapeze.json", trapecioData);
+        jsonfile.writeFileSync("./src/database/trapeze.json", trapezeData);
 
         return { message: "Successfully deleted figure" };
     };
 
     static getUrlImage(id: string) {
-        const trapecioData = this.readDatabase();
-        const figure = trapecioData.trapecio.find((figure: any) => figure.id.toLowerCase() === id.toLowerCase());
+        const trapezeData = this.readDatabase();
+        const figure = trapezeData.trapeze.find((figure: any) => figure.id.toLowerCase() === id.toLowerCase());
 
         if (!figure) return { error: `Figure with ID ${id} not found` };
 
@@ -109,8 +117,8 @@ class TrapezeModel {
     };
 
     static getStepsByName(name: string) {
-        const trapecioData = this.readDatabase();
-        const figure = trapecioData.trapecio.find((figure: any) => figure.name.toLowerCase() === name.toLowerCase());
+        const trapezeData = this.readDatabase();
+        const figure = trapezeData.trapeze.find((figure: any) => figure.name.toLowerCase() === name.toLowerCase());
 
         if (!figure) return { error: `Figure with name '${name}' not found` };
 

@@ -1,25 +1,27 @@
-####                                              ---------------- API ----------------
+###                                       --------------- API GENERAL INFORMATION --------------- 
 
 ### Mostrar la informacion de la api
 GET http://localhost:1904/api 
 
-###                                         -------------------- USUARIOS ---------------------
+###                                               --------------- USERS ---------------
 
 ### Mostrar todos los usuarios
 GET http://localhost:1904/api/users
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
 ### Buscar por Id
-GET http://localhost:1904/api/users/5f42e556-b69b-4945-895e-467d21fec7c0
+GET http://localhost:1904/api/users/98350e5e-3581-427b-9b05-ad006e990752
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
 ### Registrar un usuario
 POST http://localhost:1904/api/users/register
 Content-Type: application/json
 
 {
-  "username": "Quimey Carro",
-  "password": "290722",
-  "email": "Quimey6@gmail.com",
-  "phoneNumber": 3489520108
+  "username": "Carolina Sordini",
+  "password": "12345",
+  "email": "carito4@gmail.com",
+  "phoneNumber": 3489334895
 }
 
 ### Logearse
@@ -27,12 +29,13 @@ POST http://localhost:1904/api/users/login
 Content-Type: application/json
 
 {
-  "username": "QuImEy cArRo",
-  "password": "290722"
+  "username": "tatiana aylen vega",
+  "password": "29072022"
 }
 
 ### Actualizar usuarios
-PATCH http://localhost:1904/api/users/Pepito Lopez
+PATCH http://localhost:1904/api/users/carolina SORDIni
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 Content-Type: application/json
 
 {
@@ -42,6 +45,7 @@ Content-Type: application/json
 
 ### Desloguearse
 DELETE http://localhost:1904/api/users/logout
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 Content-Type: application/json
 
 {
@@ -50,28 +54,35 @@ Content-Type: application/json
 
 
 ### Borrar usuario de la base de datos
-DELETE http://localhost:1904/api/users/Pepito Lopez
+DELETE http://localhost:1904/api/users/carolina SORDIni
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
-###                                                      ---------- Funciones de la api de Trapecio -----------
+###                                       --------------- TRAPEZOID API FUNCTIONS ------------
 
 ### Mostrar todas las figuras
 GET http://localhost:1904/api/trapeze
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
-### Mostrar la history general del trapecio
+### Mostrar la historia general del trapecio
 GET http://localhost:1904/api/trapeze/history
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
-### Buscar por las figuras por Id
-GET http://localhost:1904/api/trapeze/1
+### Buscar las figuras por Id
+GET http://localhost:1904/api/trapeze/605e9b99-b341-4cf9-bbb5-39a1e7b8b362
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
 ### Buscar imagenes por Id
-GET http://localhost:1904/api/trapeze/image/1
+GET http://localhost:1904/api/trapeze/image/605e9b99-b341-4cf9-bbb5-39a1e7b8b362
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
 ### Buscar la guia para realizar una figura
-GET http://localhost:1904/api/trapeze/steps/Candelabro invertido
-Authorization:pasar token
+GET http://localhost:1904/api/trapeze/steps/Squad
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
+
 
 ### Crear figuras
 POST http://localhost:1904/api/trapeze/create
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 Content-Type: application/json
 
 {
@@ -93,13 +104,15 @@ Content-Type: application/json
 }
 
 ### Actualizar la informacion de una figura
-PATCH http://localhost:1904/api/trapeze/2
+PATCH http://localhost:1904/api/trapeze/605e9b99-b341-4cf9-bbb5-39a1e7b8b362
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 Content-Type: application/json
 
 {
-  "name": "Doble",
-  "difficulty": "ne"
+  "name": "Squad",
+  "difficulty": "High"
 }
 
 ### Eliminar una figura por Id
-DELETE http://localhost:1904/api/trapeze/b6fff6c2-fe34-4080-968a-34e46764644f
+DELETE http://localhost:1904/api/trapeze/605e9b99-b341-4cf9-bbb5-39a1e7b8b362
+Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f

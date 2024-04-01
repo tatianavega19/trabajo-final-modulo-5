@@ -73,10 +73,8 @@ abstract class TrapezeController {
     static getStepsByName = (req: Request, res: Response) => {
         const { name } = req.params;
         const result = TrapezeModel.getStepsByName(name);
-
-        if (result.error) res.status(200).json(result);
-
-        res.status(404).json({ error: `Steps not foun` });
+        if (result.error) res.status(404).json(result);
+        res.status(200).json(result);
     };
 };
 

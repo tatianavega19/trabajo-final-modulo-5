@@ -8,7 +8,7 @@ abstract class UserController {
     static getAllUsers = (req: Request, res: Response) => {
         const users = UserModel.getAllUsers();
         res.json(users);
-    }
+    };
 
     static registerUser = (req: Request, res: Response) => {
         const { username, password, email, phoneNumber } = req.body;
@@ -53,7 +53,6 @@ abstract class UserController {
         const response = UserModel.readUserById(userId);
         if (response.error) return res.status(404).json(response)
         res.json(response.message)
-        return res.status(500).json({ error: "Server error" });
     };
 
     static logout = (req: Request, res: Response) => {
@@ -94,7 +93,7 @@ abstract class UserController {
         if (response.error) return res.status(404).json(response);
 
         return res.json(response);
-    }
+    };
 };
 
-export { UserController }
+export { UserController };
