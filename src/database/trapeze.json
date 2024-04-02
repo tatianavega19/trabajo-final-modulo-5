@@ -15,11 +15,7 @@
                 "Finally, the trapeze artist grabs the trapeze with his hands again to safely complete the figure."
             ],
             "difficulty": "High",
-            "images": {
-                "jpg": {
-                    "image_url": "https://i.ytimg.com/vi/KlxqkXq-OU4/maxresdefault.jpg"
-                }
-            }
+            "images": "https://i.ytimg.com/vi/KlxqkXq-OU4/maxresdefault.jpg"
         },
         {
             "id": "35ec21e5-e056-470b-a999-c5e0566b5c91",
@@ -32,11 +28,7 @@
                 "Finally, the trapeze artist returns to the upright position or moves on to other figures."
             ],
             "difficulty": "Half",
-            "images": {
-                "jpg": {
-                    "image_url": "https://i.pinimg.com/564x/2e/28/5e/2e285e3231b4f27a90cd0fa6a7eef97a.jpg"
-                }
-            }
+            "images": "https://i.pinimg.com/564x/2e/28/5e/2e285e3231b4f27a90cd0fa6a7eef97a.jpg"
         },
         {
             "id": "9394602b-3d1d-4beb-bc63-852cd0cc2ffe",
@@ -49,11 +41,7 @@
                 "Finally, the trapeze artist returns to the upright position or moves on to other figures."
             ],
             "difficulty": "beginner",
-            "images": {
-                "jpg": {
-                    "image_url": "https://i.pinimg.com/564x/de/f8/71/def8714d152da9781885196dfd3c78eb.jpg"
-                }
-            }
+            "images": "https://i.pinimg.com/564x/de/f8/71/def8714d152da9781885196dfd3c78eb.jpg"
         },
         {
             "id": "4e4a7ef0-ba8c-4233-a4ff-46feb5af337d",
@@ -66,11 +54,7 @@
                 "Finish the figure by grabbing the trapeze again gracefully to land safely."
             ],
             "difficulty": "Very high.",
-            "images": {
-                "jpg": {
-                    "image_url": "https://i.pinimg.com/564x/8c/e9/02/8ce902c7432eaa0b1e5fba4cd70bbf8d.jpg"
-                }
-            }
+            "images": "https://i.pinimg.com/564x/8c/e9/02/8ce902c7432eaa0b1e5fba4cd70bbf8d.jpg"
         }
     ]
 }

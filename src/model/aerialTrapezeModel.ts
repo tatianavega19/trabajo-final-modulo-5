@@ -109,7 +109,7 @@ class TrapezeModel {
         if (!figure) return { error: `Figure with ID ${id} not found` };
 
         const { name, images } = figure;
-        const imageUrl = images.jpg.image_url;
+        const imageUrl = images;
 
         if (!imageUrl) return { error: `Image URL not found for the figure with ID ${id}` };
 
@@ -123,7 +123,7 @@ class TrapezeModel {
         if (!figure) return { error: `Figure with name '${name}' not found` };
 
         const { steps, images } = figure;
-        const imageUrl = images.jpg.image_url;
+        const imageUrl = images;
 
         if (!steps || !imageUrl) return { error: `Steps not found for figure with name:'${name}'` };
 
