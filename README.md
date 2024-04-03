@@ -160,7 +160,6 @@ Authorization: c5eafaff-ed78-43f0-9fb8-d6e991d7db7f
 
 #### ERD PARA EL FLUJO DE FUNCIONAMIENTO DE LA API:
 
-[![ERD-programacion-1.png](https://i.postimg.cc/KvTgTSr2/ERD-programacion-1.png)](https://postimg.cc/ZCTRkQM7)
-
+[![ERD-programacion-1.png](https://i.postimg.cc/cLnG7WFd/ERD-programacion-1.png)](https://postimg.cc/5Xbr1hcr)
 
 ¡Gracias por utilizar la aplicación "TRAPEZEAERIAL"!
